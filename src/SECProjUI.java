@@ -38,16 +38,45 @@ public class SECProjUI extends JFrame implements ActionListener{
         // Question: what if we add the subpanel directly to the JFrame?
 
         // Create the label and add it to the panel.
-        groupCountLabel = new JLabel("I hold text");
+        groupCountLabel = new JLabel("Enter the group count");
+        
+        JTextArea groupCountBox = new JTextArea(2, 10);
+        groupCountBox.setLineWrap(true);
+        groupCountBox.setWrapStyleWord(true);
+        //groupCountBox.setText("");
+        JLabel previousScoreQuestion = new JLabel("Did you enter previous scores or not?");
+        
+        JRadioButton yesButton = new JRadioButton("Yes");
+        //yesButton.setMnemonic(KeyEvent.VK_B);
+        //yesButton.setActionCommand(birdString);
+        yesButton.setSelected(false);
+
+        JRadioButton noButton = new JRadioButton("No");
+        //noButton.setMnemonic(KeyEvent.VK_C);
+        //noButton.setActionCommand(catString);
+        noButton.setSelected(false);
+  
+
+        //Group the radio buttons.
+        ButtonGroup radioBtnGroup = new ButtonGroup();
+        radioBtnGroup.add(yesButton);
+        radioBtnGroup.add(noButton);
+       
 
         // Create & add the buttons
         submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
+        
+        
 
         // Add things to the various panels
         subPanel1.add(groupCountLabel);
+        subPanel1.add(groupCountBox);
+        subPanel1.add(previousScoreQuestion);
+        subPanel1.add(yesButton);
+        subPanel1.add(noButton);
         subPanel1.add(submitButton);
-     ;
+        
         panel.add(subPanel1);
         panel.add(subPanel2);
         //panel.add(label);
@@ -75,7 +104,10 @@ public class SECProjUI extends JFrame implements ActionListener{
 
         if (e.getSource() == submitButton) {
 
-            groupCountLabel.setText("You clicked submit!!");
+            //groupCountLabel.setText("You clicked submit!!");
+        	SecondScreen secondScreen = new SecondScreen();
+        	//setVisible(false);
+        	secondScreen.setVisible(true);
         }
     }
 }

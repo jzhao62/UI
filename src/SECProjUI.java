@@ -1,12 +1,13 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
-
 public class SECProjUI extends JFrame implements ActionListener{
 
 	private JButton submitButton;
+	private JLabel groupCountLabel;
+	private JTextField groupCountBox;
 
 	public SECProjUI() {
 
@@ -20,13 +21,13 @@ public class SECProjUI extends JFrame implements ActionListener{
 
 
 		// Create the label for entering group count.
-		JLabel groupCountLabel = new JLabel("Enter the group count");
+		groupCountLabel = new JLabel("Enter the group count");
 
-		JTextField groupCountBox = new JTextField();
+		groupCountBox = new JTextField();
 		groupCountBox.setPreferredSize(new Dimension(60,20));
 		groupCountBox.setHorizontalAlignment(JTextField.CENTER);;
 
-		//Create another label for asking question for previously entered scores.        
+		//Create another label for asking question for previously entered scores.
 		JLabel previousScoreQuestion = new JLabel("Did you enter previous scores or not?");
 
 		JRadioButton yesButton = new JRadioButton("Yes");
@@ -41,7 +42,7 @@ public class SECProjUI extends JFrame implements ActionListener{
 
 		// Create & add the buttons
 		submitButton = new JButton("Submit");
-		submitButton.addActionListener(this);      
+		submitButton.addActionListener(this);
 
 		// Add things to the various panels
 		subPanel.add(Box.createRigidArea(new Dimension(10,100)));
@@ -53,8 +54,8 @@ public class SECProjUI extends JFrame implements ActionListener{
 		subPanel.add(yesButton);
 		subPanel.add(noButton);
 		subPanel.add(Box.createRigidArea(new Dimension(100,50)));
-		subPanel.add(submitButton, BorderLayout.CENTER);       
-		
+		subPanel.add(submitButton, BorderLayout.CENTER);
+
 		panel.add(subPanel);
 
 		add(panel, BorderLayout.CENTER);
@@ -77,7 +78,8 @@ public class SECProjUI extends JFrame implements ActionListener{
 		if (e.getSource() == submitButton) {
 
 			//groupCountLabel.setText("You clicked submit!!");
-			SecondScreen secondScreen = new SecondScreen();
+			int size = Integer.parseInt(groupCountBox.getText());
+			SecondScreen secondScreen = new SecondScreen(size);
 			setVisible(false);
 			secondScreen.setVisible(true);
 		}

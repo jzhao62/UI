@@ -8,6 +8,8 @@ public class SECProjUI extends JFrame implements ActionListener{
 	private JButton submitButton;
 	private JLabel groupCountLabel;
 	private JTextField groupCountBox;
+	JRadioButton yesButton ;
+	JRadioButton noButton ;
 
 	public SECProjUI() {
 
@@ -30,9 +32,9 @@ public class SECProjUI extends JFrame implements ActionListener{
 		//Create another label for asking question for previously entered scores.
 		JLabel previousScoreQuestion = new JLabel("Did you enter previous scores or not?");
 
-		JRadioButton yesButton = new JRadioButton("Yes");
+		yesButton = new JRadioButton("Yes");
 		yesButton.setSelected(false);
-		JRadioButton noButton = new JRadioButton("No");
+		noButton = new JRadioButton("No");
 		noButton.setSelected(false);
 
 		//Group the radio buttons.
@@ -76,10 +78,15 @@ public class SECProjUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource() == submitButton) {
-
-			//groupCountLabel.setText("You clicked submit!!");
+			int preference = 0;
+			if(yesButton.isSelected()) {
+				preference = 1;
+			}
 			int size = Integer.parseInt(groupCountBox.getText());
-			SecondScreen secondScreen = new SecondScreen(size);
+			SecondScreen secondScreen = new SecondScreen(size,preference);
+			secondScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			secondScreen.setTitle("Self and peer evaluation");
+			secondScreen.pack();
 			setVisible(false);
 			secondScreen.setVisible(true);
 		}

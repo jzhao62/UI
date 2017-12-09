@@ -3,31 +3,27 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SECProjUI extends JFrame implements ActionListener{
+public class FirstScreen extends JFrame implements ActionListener {
 
+	private final JComboBox<Integer> groupList;
 	private JButton submitButton;
-	private JLabel groupCountLabel;
-	private JTextField groupCountBox;
 	JRadioButton yesButton ;
 	JRadioButton noButton ;
 
-	public SECProjUI() {
+	public FirstScreen() {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 
 		//Create a sub-panel and add them to the main panel.
 		JPanel subPanel = new JPanel();
-		panel.add(subPanel);
 		subPanel.setPreferredSize(new Dimension(350,300));
 
-
 		// Create the label for entering group count.
-		groupCountLabel = new JLabel("Enter the group count");
+		JLabel groupCountLabel = new JLabel("Enter the group count");
 
-		groupCountBox = new JTextField();
-		groupCountBox.setPreferredSize(new Dimension(60,20));
-		groupCountBox.setHorizontalAlignment(JTextField.CENTER);;
+		Integer[] groupValues = new Integer[]{2, 3, 4, 5, 6, 7};
+		groupList = new JComboBox<>(groupValues);
 
 		//Create another label for asking question for previously entered scores.
 		JLabel previousScoreQuestion = new JLabel("Did you enter previous scores or not?");
@@ -50,7 +46,7 @@ public class SECProjUI extends JFrame implements ActionListener{
 		subPanel.add(Box.createRigidArea(new Dimension(10,100)));
 
 		subPanel.add(groupCountLabel);
-		subPanel.add(groupCountBox);
+		subPanel.add(groupList);
 		subPanel.add(previousScoreQuestion);
 		subPanel.add(Box.createRigidArea(new Dimension(110,0)));
 		subPanel.add(yesButton);
@@ -59,18 +55,16 @@ public class SECProjUI extends JFrame implements ActionListener{
 		subPanel.add(submitButton, BorderLayout.CENTER);
 
 		panel.add(subPanel);
-
 		add(panel, BorderLayout.CENTER);
-
 	}
 
 	public static void main(String[] args) {
 
-		SECProjUI projUI = new SECProjUI();
-		projUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		projUI.setTitle("Self and peer evaluation");
-		projUI.pack();
-		projUI.setVisible(true);
+		FirstScreen firstScreen = new FirstScreen();
+		firstScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		firstScreen.setTitle("Self and peer evaluation");
+		firstScreen.pack();
+		firstScreen.setVisible(true);
 
 	}
 
@@ -82,7 +76,7 @@ public class SECProjUI extends JFrame implements ActionListener{
 			if(yesButton.isSelected()) {
 				preference = 1;
 			}
-			int size = Integer.parseInt(groupCountBox.getText());
+			int size = Integer.parseInt(groupList.getSelectedItem().toString());
 			SecondScreen secondScreen = new SecondScreen(size,preference);
 			secondScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			secondScreen.setTitle("Self and peer evaluation");
@@ -91,5 +85,7 @@ public class SECProjUI extends JFrame implements ActionListener{
 			secondScreen.setVisible(true);
 		}
 	}
+
+
 }
 

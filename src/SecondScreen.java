@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/* This class represents the second screen where the students is prompted to enter
+ * self and peer evaluations. For previously entered scores, this class generates dummy
+ * data and let's student modify it.This class has a constructor which takes in group count
+ * and boolean for previously entered score option from the first screen. */
+
 public class SecondScreen extends JFrame implements ActionListener{
 
 	private JButton submitButton;
@@ -18,6 +23,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 		JPanel subPanel = new JPanel();
 		subPanel.setPreferredSize(new Dimension(550, 550));
 
+		//Dummy data for previously entered scores.
 		Object[][] scores = {
 				{"Dave",new Integer(5),new Integer(5),new Integer(4)},
 				{"Casey",new Integer(3),new Integer(4),new Integer(4)},

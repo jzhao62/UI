@@ -3,6 +3,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/* This class represents the first screen where the user is prompted to enter
+ * the group count and whether has he/she entered scores previously.*/
+
 public class FirstScreen extends JFrame implements ActionListener {
 
 	private final JComboBox<Integer> groupList;
@@ -21,7 +24,8 @@ public class FirstScreen extends JFrame implements ActionListener {
 
 		// Create the label for entering group count.
 		JLabel groupCountLabel = new JLabel("Enter the group count");
-
+		
+		//Value range is restricted between 2 to 7. 
 		Integer[] groupValues = new Integer[]{2, 3, 4, 5, 6, 7};
 		groupList = new JComboBox<>(groupValues);
 
@@ -38,13 +42,13 @@ public class FirstScreen extends JFrame implements ActionListener {
 		radioBtnGroup.add(yesButton);
 		radioBtnGroup.add(noButton);
 
-		// Create & add the buttons
+		
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(this);
 
-		// Add things to the various panels
+		//Putting every component in a sub-panel with proper formatting
+		//and adding it to the final panel.
 		subPanel.add(Box.createRigidArea(new Dimension(10,100)));
-
 		subPanel.add(groupCountLabel);
 		subPanel.add(groupList);
 		subPanel.add(previousScoreQuestion);
@@ -77,6 +81,7 @@ public class FirstScreen extends JFrame implements ActionListener {
 				preference = 1;
 			}
 			int size = Integer.parseInt(groupList.getSelectedItem().toString());
+			//Invoking second screen and passing values to its object.
 			SecondScreen secondScreen = new SecondScreen(size,preference);
 			secondScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			secondScreen.setTitle("Self and peer evaluation");

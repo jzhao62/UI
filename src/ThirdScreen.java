@@ -67,7 +67,7 @@ public class ThirdScreen extends JFrame implements ActionListener {
 		}
 
 		Object[][] normalisedData = new Object[data.length][2];
-		double[] studentTotal = new double[data.length]; // Total of all student scores across different categories
+		double[] studentTotal = new double[data.length]; // Total of student scores across different categories
 		double allTotal = 0; // Total of each student totals
 		try {
 			for(int i = 0; i<data.length; i++) {
@@ -75,7 +75,7 @@ public class ThirdScreen extends JFrame implements ActionListener {
 				double b = (int)data[i][2];
 				double c = (int)data[i][3];
 
-				//in case of negative values, it returns an all negative array.
+				//in case of negative values, return an empty array
 				if (a < 0 || b < 0 || c < 0) {
 					return new Object[0][0];
 				}
@@ -94,7 +94,7 @@ public class ThirdScreen extends JFrame implements ActionListener {
 					for (int j = 0; j < data.length; j++) {
 						normalisedData[j][0] = data[j][0];
 						double x = studentTotal[j] / allTotal;
-						String s = String.format("%.2f", x); // Truncates the decimal places to 2 digits
+						String s = String.format("%.2f", x); // Truncates the decimal to 2 places
 						Double y = Double.parseDouble(s);
 						normalisedData[j][1] = y;
 					}

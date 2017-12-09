@@ -33,7 +33,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for illegal arguments like string which are unacceptable to the normalize method.
-	//in this case the normalization code will return a null value.
+	//in this case the normalization code will return a empty array
 	@org.junit.Test
 	public void testIllegalArgument() {
 		Object[][] scores = {
@@ -110,7 +110,7 @@ public class Test {
 
 
 	//tests normalization functionality for negative values.
-	//in this case the normalization code returns an all negative array.
+	//in this case the normalization code returns an empty array
 	@org.junit.Test
 	public void testNegativeIntegerArguments() {
 		Object[][] scores = {
@@ -164,7 +164,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for null values as input.
-	//the normalization code should return null back.
+	//the normalization code returns an empty array.
 	@org.junit.Test
 	public void testNullValue() {
 		Object[][] scores = null;
@@ -176,7 +176,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for empty values as input.
-	//the normalization code should return null back.
+	//the normalization code returns an empty array.
 	@org.junit.Test
 	public void testEmptyValue() {
 		Object[][] scores = {};
@@ -188,9 +188,9 @@ public class Test {
 	}
 
 	//tests normalization functionality for incomplete input with missing name or score parameters
-	//the normalization code should return null back.
+	//the normalization code returns an empty array.
 	@org.junit.Test
-	public void testUndesirableInputValue() {
+	public void testInCompleteInput() {
 		Object[][] scores = {{"Dave"}, {new Integer(0), new Integer(1)}, {}, {new Integer(-1)}};
 		thirdScr = new ThirdScreen(scores);
 		Object[][] normalisedData = thirdScr.normalise(scores);
@@ -199,7 +199,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for less than 2 rows(group count).
-	//the normalization should return null.
+	//the normalization should returns an empty array.
 	@org.junit.Test
 	public void testLessThanTwoGroupCounts() {
 		Object[][] scores = {{"Dave", new Integer(0), new Integer(0), new Integer(0)}};
@@ -213,7 +213,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for more than 7 group counts.
-	//the normalization should return null.
+	//the normalization returns an empty array.
 	@org.junit.Test
 	public void testMoreThanSevenGroupCount() {
 		Object[][] scores = {
@@ -235,7 +235,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for illegal arguments like Floating Point  which are unacceptable to the normalize method.
-	//in this case the normalization code will return a null value.
+	//in this case the normalization code returns an empty array.
 	@org.junit.Test
 	public void testFloatingPointArgument() {
 		Object[][] scores = {
@@ -254,7 +254,7 @@ public class Test {
 	}
 
 	//tests normalization functionality for illegal arguments like Character values which are unacceptable to the normalize method.
-	//in this case the normalization code will return a null value.
+	//in this case the normalization code returns an empty array.
 	@org.junit.Test
 	public void testIllegalCharacterArgument() {
 		Object[][] scores = {
@@ -272,7 +272,7 @@ public class Test {
 		assertEquals(normalisedData.length, expectedData.length);
 	}
 
-	//tests normalization functionality for valid more group counts.
+	//tests normalization functionality for valid  group counts.
 	//the normalization code should return accurate values.
 	@org.junit.Test
 	public void testValidGroupCount() {

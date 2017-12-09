@@ -5,23 +5,29 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/* This class represents the second screen where the students is prompted to enter
- * self and peer evaluations. For previously entered scores, this class generates dummy
- * data and let's student modify it.This class has a constructor which takes in group count
- * and boolean for previously entered score option from the first screen. */
+/* The Second screen takes user preferences from the previous screen and populates table data accordingly
+Group size and previous score preference are passed on from the first class
+If user entered previous scores, populating hardcoded names and scores to the table.
+If user didn't enter scores before, initializing zero scores for all student entries.
+Number of rows in the table depend on the team size entered in the previous screen.
+User can evaluate himself and his peers on a scale of 0 to 5. No other entry is possible.
+Selection is given in the form of a drop down. So Invalid scores cannot be entered
+The scores entered here will be normalised in the next(third) screen by clicking the submit button
+* */
 
 public class SecondScreen extends JFrame implements ActionListener{
 
 	private JButton submitButton;
 	private Object[][] data;
 
+	// Class constructor to initialize values
 	public SecondScreen(int groupSize, int preference) {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 		JPanel subPanel = new JPanel();
-		subPanel.setPreferredSize(new Dimension(550, 550));
+		subPanel.setPreferredSize(new Dimension(550, 450)); // Setting panel size
 
 		//Dummy data for previously entered scores.
 		Object[][] scores = {
@@ -36,39 +42,44 @@ public class SecondScreen extends JFrame implements ActionListener{
 		//Configuring the table data as per inputs from the first screen.
 		data = new Object[groupSize][4];
 		if(preference == 1) {
-			for(int i = 0 ;i<groupSize;i++) {
-				for(int j=0;j<4;j++) {
+			for(int i = 0; i<groupSize; i++) {
+				for(int j = 0; j<4; j++) {
 					data[i][j] = scores[i][j];
 				}
 			}
 		} else {
-			for(int i = 0 ;i<groupSize;i++) {
+			for(int i = 0; i<groupSize; i++) {
 				data[i][0] = scores[i][0];
-				for(int j=1;j<4;j++) {
+				for(int j = 1; j<4; j++) {
 					data[i][j] = 0;
 				}
 			}
 		}
 
 		MyTableModel model = new MyTableModel();
-		model.setData(data);
+		model.setData(data); // Setting hardcoded data to the table model
 		JTable table = new JTable(model);
 		JScrollPane jscr = new JScrollPane(table);
-		
-		JLabel headerLabel = new JLabel("Kindly enter scores in the below table and click on SUBMIT. ");
+		jscr.setPreferredSize(new Dimension(500, 300));
+		// Labels for directions
+		JLabel headerLabel = new JLabel("Kindly select scores in the below table and click on SUBMIT. ");
 		JLabel headerLabel2 = new JLabel("If you have previously entered scores - ");
-		JLabel headerLabel3 = new JLabel("Double click on the score to update and click on SUBMIT");
+		JLabel headerLabel3 = new JLabel("select new value from dropdown to update and click on SUBMIT");
 
+		// Adding this to subpanel
 		subPanel.add(headerLabel);
 		subPanel.add(headerLabel2);
 		subPanel.add(headerLabel3);
 
 		subPanel.add(jscr);
 
+		// setting up the dropdown values
+
 		setUpProfColumn(table.getColumnModel().getColumn(1));
 		setUpWorkEvalColumn(table.getColumnModel().getColumn(2));
 		setUpMeetingParColumn(table.getColumnModel().getColumn(3));
 
+		// Submit button and listener
 		submitButton = new JButton("Submit");
 		submitButton.addActionListener(this);
 		subPanel.add(submitButton);
@@ -80,8 +91,11 @@ public class SecondScreen extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+		// If submit button is clicked
 		if (e.getSource() == submitButton) {
 
+			// Passing table data to next screen
 			ThirdScreen thirdScreen = new ThirdScreen(data);
 			thirdScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			thirdScreen.setTitle("Normalized Scores");
@@ -92,6 +106,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 		}
 	}
 
+	// Set dropdown values - Professionalism
 	public void setUpProfColumn(TableColumn profColumn) {
 		//Set up the editor for the professionalism cells.
 		JComboBox pBox = new JComboBox();
@@ -101,7 +116,6 @@ public class SecondScreen extends JFrame implements ActionListener{
 		pBox.addItem(3);
 		pBox.addItem(4);
 		pBox.addItem(5);
-		//pBox.addActionListener(this);
 		profColumn.setCellEditor(new DefaultCellEditor(pBox));
 
 		//Set up tool tips for the professionalism cells.
@@ -111,6 +125,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 		profColumn.setCellRenderer(renderer);
 	}
 
+	// Set dropdown values - Professionalism
 	public void setUpWorkEvalColumn(TableColumn workEvalColumn) {
 		//Set up the editor for the work eval cells.
 		JComboBox wBox = new JComboBox();
@@ -130,6 +145,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 		workEvalColumn.setCellRenderer(renderer);
 	}
 
+	// Set dropdown values - Professionalism
 	public void setUpMeetingParColumn(TableColumn meetingParColumn) {
 		//Set up the editor for the meeting par cells.
 		JComboBox mBox = new JComboBox();

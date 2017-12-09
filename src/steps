@@ -1,9 +1,0 @@
-Java source code for the GUI program the team wrote.
-
-1. This program should start by asking the user for the number of team members and if there were scores previously entered by this student.
-
-The number of team members will be between 2 and 7; your group should makeup names and previously entered scores.
-The program will then display a screen in which the user can enter/update their peer- and self-evaluation scores.
-
-Once all the scores are filled in, the user should be allowed to “submit” their scores.
-The system should normalize these scores and, in a final screen, display the normalized score for each teammate. group count,

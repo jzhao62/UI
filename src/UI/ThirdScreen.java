@@ -1,3 +1,4 @@
+package UI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,21 +48,21 @@ public class ThirdScreen extends JFrame implements ActionListener {
 		add(panel, BorderLayout.CENTER);
 	}
 
-	// Normalization method
+	// Normalization method - Takes table data from second screen and returns normalised data
 	public Object[][] normalise(Object[][] data) {
 
-		// Check if input array is either null or if the array is empty
+		// Check if input array is either null or if the array is empty - return empty array
 		if (data == null || data.length == 0) {
 			return new Object[0][0];
 		}
-		//Check for input with incomplete names or scores
+		//Check for input with incomplete names or scores - return empty array
 		for (int i = 0; i < data.length; i++) {
 			if (data[i].length != 4) {
 				return new Object[0][0];
 			}
 		}
 
-		//check for group count < 2 and group count > 7
+		//check for group count < 2 and group count > 7 - return empty array
 		if (data.length < 2 || data.length > 7) {
 			return new Object[0][0];
 		}
@@ -112,10 +113,10 @@ public class ThirdScreen extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		// Ok button click
+		// Ok button click - dismiss the screen
 		if (e.getSource() == okButton) {
 			setVisible(false);
-			
+
 		}
 	}
 

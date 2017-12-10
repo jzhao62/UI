@@ -1,3 +1,5 @@
+package UI;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -6,12 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /* The Second screen takes user preferences from the previous screen and populates table data accordingly
-Group size and previous score preference are passed on from the first class
 If user entered previous scores, populating hardcoded names and scores to the table.
 If user didn't enter scores before, initializing zero scores for all student entries.
-Number of rows in the table depend on the team size entered in the previous screen.
 User can evaluate himself and his peers on a scale of 0 to 5. No other entry is possible.
-Selection is given in the form of a drop down. So Invalid scores cannot be entered
 The scores entered here will be normalised in the next(third) screen by clicking the submit button
 * */
 
@@ -92,7 +91,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		// If submit button is clicked
+		// If submit button is clicked, navigating to third screen with table data
 		if (e.getSource() == submitButton) {
 
 			// Passing table data to next screen
@@ -125,7 +124,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 		profColumn.setCellRenderer(renderer);
 	}
 
-	// Set dropdown values - Professionalism
+	// Set dropdown values - Work Evaluation
 	public void setUpWorkEvalColumn(TableColumn workEvalColumn) {
 		//Set up the editor for the work eval cells.
 		JComboBox wBox = new JComboBox();
@@ -145,7 +144,7 @@ public class SecondScreen extends JFrame implements ActionListener{
 		workEvalColumn.setCellRenderer(renderer);
 	}
 
-	// Set dropdown values - Professionalism
+	// Set dropdown values - Meeting Participation
 	public void setUpMeetingParColumn(TableColumn meetingParColumn) {
 		//Set up the editor for the meeting par cells.
 		JComboBox mBox = new JComboBox();

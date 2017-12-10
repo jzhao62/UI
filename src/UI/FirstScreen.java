@@ -1,12 +1,12 @@
+package UI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/* The FirstScreen class asks the user to select team size in the form of a dropdown.
-The dropdown has values ranging from 2 to 7. Any other entry is not possible.
-It also asks the user if scores were entered previously by using a radio button preference
-Based on the user preferences, he is navigated to the second screen accordingly.
+/* The FirstScreen class asks the user for team size and if scores were entered previously
+Based on the user preferences, user is navigated to the second screen accordingly.
 * */
 
 public class FirstScreen extends JFrame implements ActionListener {
@@ -81,7 +81,7 @@ public class FirstScreen extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		// Click action on submit
+		// Click action on submit- navigating to second screen with user preferences
 		if (e.getSource() == submitButton) {
 			int preference = 0;
 			if(yesButton.isSelected()) {
